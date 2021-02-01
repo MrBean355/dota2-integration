@@ -26,14 +26,13 @@ val currentPlatform = (findProperty("platform") as? String) ?: "win"
 
 dependencies {
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-javafx:1.4.2")
-    implementation("io.ktor:ktor-server-netty:1.5.0")
-    implementation("io.ktor:ktor-gson:1.5.0")
     implementation("org.slf4j:slf4j-simple:1.7.30")
     implementation("com.squareup.retrofit2:retrofit:2.9.0")
     implementation("com.squareup.retrofit2:converter-gson:2.9.0")
     implementation("com.squareup.retrofit2:converter-scalars:2.9.0")
     implementation("com.vdurmont:semver4j:3.1.0")
     implementation("no.tornado:tornadofx:1.7.20")
+    implementation("com.github.mrbean355:dota2-gsi:1.0.0")
 
     implementation("org.openjfx:javafx-base:$fxVersion:$currentPlatform")
     implementation("org.openjfx:javafx-controls:$fxVersion:$currentPlatform")

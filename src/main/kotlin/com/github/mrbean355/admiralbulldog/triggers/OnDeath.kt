@@ -16,11 +16,15 @@
 
 package com.github.mrbean355.admiralbulldog.triggers
 
-import com.github.mrbean355.admiralbulldog.game.GameState
+import com.github.mrbean355.admiralbulldog.game.player
+import com.github.mrbean355.dota2.GameState
 
 class OnDeath : SoundTrigger {
 
     override fun shouldPlay(previous: GameState, current: GameState): Boolean {
-        return current.player!!.deaths > previous.player!!.deaths
+        val previousDeaths = previous.player?.deaths ?: return false
+        val currentDeaths = current.player?.deaths ?: return false
+
+        return currentDeaths > previousDeaths
     }
 }

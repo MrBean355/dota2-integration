@@ -16,12 +16,16 @@
 
 package com.github.mrbean355.admiralbulldog.triggers
 
-import com.github.mrbean355.admiralbulldog.game.GameState
+import com.github.mrbean355.admiralbulldog.game.player
+import com.github.mrbean355.dota2.GameState
 
 class OnVictory : SoundTrigger {
 
     override fun shouldPlay(previous: GameState, current: GameState): Boolean {
-        return current.map!!.win_team != TEAM_NONE && previous.map!!.win_team == TEAM_NONE
-                && current.player!!.team_name == current.map.win_team
+        val previousWinner = previous.map?.winningTeam ?: return false
+        val currentWinner = current.map?.winningTeam ?: return false
+        val playerTeam = current.player?.teamName ?: return false
+
+        return currentWinner != TEAM_NONE && previousWinner == TEAM_NONE && playerTeam == currentWinner
     }
 }

@@ -16,9 +16,9 @@
 
 package com.github.mrbean355.admiralbulldog.triggers
 
-import com.github.mrbean355.admiralbulldog.game.GameState
-import com.github.mrbean355.admiralbulldog.game.MatchState
 import com.github.mrbean355.admiralbulldog.persistence.ConfigPersistence
+import com.github.mrbean355.dota2.GameState
+import com.github.mrbean355.dota2.MatchState
 import kotlin.math.ceil
 
 /** How often (in seconds) the runes spawn. */
@@ -31,12 +31,13 @@ class OnBountyRunesSpawn : SoundTrigger {
     private var nextPlayTime = UNINITIALISED
 
     override fun shouldPlay(previous: GameState, current: GameState): Boolean {
-        val gameState = current.map!!.game_state
-        if (gameState != MatchState.DOTA_GAMERULES_STATE_PRE_GAME && gameState != MatchState.DOTA_GAMERULES_STATE_GAME_IN_PROGRESS) {
+        val currentMap = current.map ?: return false
+        val matchState = currentMap.matchState
+        if (matchState != MatchState.PRE_GAME && matchState != MatchState.GAME_IN_PROGRESS) {
             // Don't play during the picking phase.
             return false
         }
-        val currentTime = current.map.clock_time
+        val currentTime = currentMap.clockTime
         if (nextPlayTime == UNINITIALISED) {
             nextPlayTime = findNextPlayTime(currentTime)
         }

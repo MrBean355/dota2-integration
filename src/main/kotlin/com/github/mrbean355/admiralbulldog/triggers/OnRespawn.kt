@@ -16,11 +16,15 @@
 
 package com.github.mrbean355.admiralbulldog.triggers
 
-import com.github.mrbean355.admiralbulldog.game.GameState
+import com.github.mrbean355.admiralbulldog.game.hero
+import com.github.mrbean355.dota2.GameState
 
 class OnRespawn : SoundTrigger {
 
     override fun shouldPlay(previous: GameState, current: GameState): Boolean {
-        return previous.hero!!.respawn_seconds > 0 && current.hero!!.respawn_seconds == 0
+        val previousTimer = previous.hero?.respawnSeconds ?: return false
+        val currentTimer = current.hero?.respawnSeconds ?: return false
+
+        return previousTimer > 0 && currentTimer == 0L
     }
 }

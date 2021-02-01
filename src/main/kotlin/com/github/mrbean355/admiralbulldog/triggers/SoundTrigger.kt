@@ -16,7 +16,7 @@
 
 package com.github.mrbean355.admiralbulldog.triggers
 
-import com.github.mrbean355.admiralbulldog.game.GameState
+import com.github.mrbean355.dota2.GameState
 import kotlin.reflect.KClass
 
 val SOUND_TRIGGER_TYPES: Set<SoundTriggerType> = setOf(

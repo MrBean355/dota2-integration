@@ -16,11 +16,15 @@
 
 package com.github.mrbean355.admiralbulldog.triggers
 
-import com.github.mrbean355.admiralbulldog.game.GameState
+import com.github.mrbean355.admiralbulldog.game.hero
+import com.github.mrbean355.dota2.GameState
 
 class OnSmoked : SoundTrigger {
 
     override fun shouldPlay(previous: GameState, current: GameState): Boolean {
-        return !previous.hero!!.smoked && current.hero!!.smoked
+        val previouslySmoked = previous.hero?.smoked ?: return false
+        val currentlySmoked = current.hero?.smoked ?: return false
+
+        return !previouslySmoked && currentlySmoked
     }
 }
